@@ -2,7 +2,7 @@
 
 	// Seconds * Minutes * Hours
 	define("MAX_CACHE_LIFE", 60 * 60 * 1);
-	define("CACHE_FILE", "inc/cache/posts.json");
+	define("CACHE_FILE", "posts.json");
 	define("POST_DIR", "posts");
 
 	// If the cache file exists and it isn't too old
