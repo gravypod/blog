@@ -1,7 +1,7 @@
 // Borrowed from http://stackoverflow.com/a/196991/1127064
 function make_title(str) {
-	return str.replace(/\w\S*/g, function(txt) {
-		if (txt.length <= 2)
+	return str.replace(/\w\S*/g, function(txt, offset, string) {
+		if (txt.length <= 2 && offset > 0)
 			return txt;
 		return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
 	});
@@ -9,20 +9,15 @@ function make_title(str) {
 
 // Borrowed from http://stackoverflow.com/a/847196/1127064
 function make_date(timestamp) {
-	var today = new Date(timestamp*1000);
+	var today = new Date(timestamp * 1000);
 	var dd = today.getDate();
-	var mm = today.getMonth()+1;
+	var mm = today.getMonth() + 1;
 	var yyyy = today.getFullYear();
 
-	if (dd < 10) {
-		dd = '0' + dd;
-	}
+	dd = dd < 10 ? '0' + dd : dd;
+	mm = mm < 10 ? '0' + mm : mm;
 
-	if (mm < 10) {
-		mm = '0' + mm;
-	}
-
-	return dd + "/" + mm + "/" + yyyy.toString().substr(2,2);
+	return dd + "/" + mm + "/" + yyyy.toString().substr(2, 2);
 }
 
 function compare_post_release_date(post_left, post_right) {
@@ -65,6 +60,7 @@ function add_post_object(post) {
 }
 
 $(document).ready(function () {
+	showdown.setOption("tables", true);
 	$.getJSON("list.php", function (post_list) {
 		post_list.sort(compare_post_release_date);
 		post_list.forEach(add_post_object);
