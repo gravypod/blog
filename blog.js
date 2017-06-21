@@ -25,28 +25,26 @@ function compare_post_release_date(post_left, post_right) {
 }
 
 function add_post_object(post) {
-	var post_display = $("#post-display");
+	var post_display = $("#blog-body");
 
-	var row = $('<div class="row">');
+	var body = $('<div class="item post">');
 
-	var body = $('<div class="panel-body">');
-
-	var title = $('<h1 class="panel-title">');
+	var title = $('<div>');
 	{
-		var title_header = $('<h1>');
+		var title_header = $('<h1 class="post-title">');
 		title_header.html(make_title(post.title));
 
-		var date = $('<span class="badge pull-right">');
+		var date = $('<div class="post-time">'); // $('<span class="badge pull-right">');
 
-		date.html(make_date(post.date) + (post.catagory ? " " + post.catagory : ""));
+		date.html('(' + make_date(post.date) + (post.catagory ? " " + post.catagory : "") + ')');
 
-		date.appendTo(title);
 		title_header.appendTo(title);
+		date.appendTo(title);
 
 		title.appendTo(body);
 	}
 
-	var content = $('<div class="well-sm">');
+	var content = $('<div>');
 	{
 		$.get(post.location, function (text) {
 			var converter = new showdown.Converter();
@@ -55,8 +53,8 @@ function add_post_object(post) {
 		content.appendTo(body);
 	}
 
-	body.appendTo(row);
-	row.appendTo(post_display);
+	body.appendTo(post_display);
+	$('<hr>').appendTo(post_display);
 }
 
 $(document).ready(function () {
