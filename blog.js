@@ -67,7 +67,7 @@ location.search.substr(1).split("&").forEach(function(item) {queryDict[item.spli
 
 $(document).ready(function () {
 	showdown.setOption("tables", true);
-	$.getJSON("list.php", function (post_list) {
+	$.getJSON("posts-cached.json", function (post_list) {
 		post_list.sort(compare_post_release_date);
 		if (queryDict.title !== undefined) {
 			post_list = post_list.filter(function (p) { return clean_url_title(p.title) == queryDict.title; });
