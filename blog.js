@@ -35,7 +35,6 @@ function add_post_object(post) {
 
 	var title = $('<div>');
 	{
-		console.log(`<a href="?title="${clean_url_title(post.title)}" class="post-title">`);
 		var title_header = $(`<a href="./?title=${clean_url_title(post.title)}" class="post-title">`);
 		title_header.html(make_title(post.title));
 
@@ -71,7 +70,6 @@ $(document).ready(function () {
 	$.getJSON("list.php", function (post_list) {
 		post_list.sort(compare_post_release_date);
 		if (queryDict.title !== undefined) {
-			console.log("Filtering to " + queryDict.title);
 			post_list = post_list.filter(function (p) { return clean_url_title(p.title) == queryDict.title; });
 		}
 		post_list.forEach(add_post_object);
