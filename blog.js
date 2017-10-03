@@ -1,3 +1,7 @@
+function clean_url_title(title) {
+	return encodeURIComponent(title.replace(new RegExp(' ', 'g'), "_"));
+}
+
 // Borrowed from http://stackoverflow.com/a/196991/1127064
 function make_title(str) {
 	return str.replace(/\w\S*/g, function(txt, offset, string) {
@@ -31,7 +35,8 @@ function add_post_object(post) {
 
 	var title = $('<div>');
 	{
-		var title_header = $('<h1 class="post-title">');
+		console.log(`<a href="?title="${clean_url_title(post.title)}" class="post-title">`);
+		var title_header = $(`<a href="./?title=${clean_url_title(post.title)}" class="post-title">`);
 		title_header.html(make_title(post.title));
 
 		var date = $('<div class="post-time">'); // $('<span class="badge pull-right">');
@@ -57,10 +62,19 @@ function add_post_object(post) {
 	$('<hr>').appendTo(post_display);
 }
 
+// Get variable parse https://stackoverflow.com/a/21210643/1127064
+var queryDict = {}
+location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]})
+
 $(document).ready(function () {
 	showdown.setOption("tables", true);
 	$.getJSON("list.php", function (post_list) {
 		post_list.sort(compare_post_release_date);
+		if (queryDict.title !== undefined) {
+			console.log("Filtering to " + queryDict.title);
+			post_list = post_list.filter(function (p) { return clean_url_title(p.title) == queryDict.title; });
+		}
 		post_list.forEach(add_post_object);
 	});
 });
+
