@@ -4,6 +4,16 @@
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 		<style>
 
+			a {
+				color:green !important;
+			}
+
+			body {
+				color: #ffffff;
+				background-color: #000000;
+				font-family: monospace;
+			}
+
 			.content {
 				display: flex;
 				align-items: center;
@@ -55,6 +65,7 @@
 				border-style: inset;
 				border-width: 1px;
 			}
+
 		</style>
 	</head>
 	<body>
@@ -62,7 +73,7 @@
 			<div class="item head">
 				<h1>Joshua D. Katz</h1>
 				<div class="social">
-					( <a class="fa fa-envelope" id="mail-address" href="#" onclick="mail_address();"></a> | <a target="_blank" class="fa fa-github-square" href="https://github.com/gravypod/"></a> | <a target="_blank" class="fa fa-hacker-news" href="https://news.ycombinator.com/user?id=gravypod"></a> )
+					( <a style="color: white !important;" class="fa fa-envelope" id="mail-address" href="#""></a> | <a target="_blank" style="color: white !important;" class="fa fa-github-square" href="https://github.com/gravypod/"></a> | <a target="_blank" style="color: white !important;" class="fa fa-hacker-news" href="https://news.ycombinator.com/user?id=gravypod"></a> )
 				</div>
 				<p>I'm a Software Engineer who work mostly at the systems level as you can probably tell from my poorly crafted website. Please pretend that this is just some misguided attempt at being 'minimalistic' on my part so you and I can continue on with this 'content' thing that you're probably expecting. I'm currently interested in network protocol development, game development, stream processing, data science, and Amateur Radio.</p>
 			</div>
@@ -70,14 +81,12 @@
 		</div>
 	</body>
 	<script type="text/javascript">
-		function mail_address() {
-			// Yes.... and you know it makes sense in this!
-			// I finally got to use it! Hahahaha
-			with (document.getElementById("mail-address")) {
-				onclick = undefined;
-				href = "data:text/html;base64,PGh0bWw+PHNjcmlwdD5bWzEwMywxMTQsOTcsMTE4LDEyMSwxMTIsMTExLDEwMCw2NCwxMDMsMTE0LDk3LDExOCwxMjEsMTEyLDExMSwxMDAsNDYsIDk5LDExMSwxMDldLFs5NywxMDAsMTA5LDEwNSwxMTAsNjQsMTA2LDExMSwxMTUsMTA0LDExNyw5NywxMDcsOTcsMTE2LDEyMiw0NiwxMDksMTAxXV0ubWFwKGZ1bmN0aW9uIChzYywgYSwgYikge3ZhciBsPScnO3NjLmZvckVhY2goZnVuY3Rpb24gKGMpIHtsKz0gU3RyaW5nLmZyb21DaGFyQ29kZShjKTt9KTtyZXR1cm4gbDt9KS5mb3JFYWNoKGZ1bmN0aW9uIChlbWFpbCkge2RvY3VtZW50LndyaXRlKGA8YSBocmVmPSJtYWlsdG86JHtlbWFpbH0iPiR7ZW1haWx9PC9hPmApO2RvY3VtZW50LndyaXRlKCI8L2JyPiIpO30pOzwvc2NyaXB0Pjxib2R5PjxidXR0b24gb25jbGljaz0id2luZG93Lmhpc3RvcnkuYmFjaygpOyI+QmFjayB0byBtYWluIHNpdGU8L2J1dHRvbj48L2JvZHk+PC9odG1sPgo=";
-				click();
-			}
+		var mail_button = document.getElementById("mail-address");
+		mail_button.onclick = function () {
+			var e = document.createElement("p");
+			e.innerHTML = window.atob("PGEgaHJlZj0ibWFpbHRvOmFkbWluQGpvc2h1YWthdHoubWUiPkVtYWlsOiBhZG1pbkBqb3NodWFrYXR6Lm1lPC9hPg==");
+			mail_button.parentElement.appendChild(e);
+			mail_button.onclick = undefined;
 		};
 	</script>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
